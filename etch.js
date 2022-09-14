@@ -37,12 +37,8 @@ for (let i = 0; i<=15; ++i) {
     for (let j = 0; j<=15; ++j) {
         const horizontalSquare = document.createElement('div');
         horizontalSquare.classList.add('horizontalSquare');
-        horizontalSquare.setAttribute('data-brightness',100);   //Add brightness attribute 100 for progressive reduction 
+        horizontalSquare.setAttribute('data-brightness',100);   //Add brightness attribute 100 for progressive darkness reduction 
         sketchContainer.appendChild(horizontalSquare);
-        if (j === 15) {
-            lineBreak = document.createElement('hr');
-            sketchContainer.appendChild(lineBreak);
-        }
     }
     
 }

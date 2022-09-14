@@ -1,10 +1,18 @@
 body{
     text-align: center;
+    background-color: rgb(255, 255, 255);
+    font-size: 23px;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .sketchContainer{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(16, auto);
     justify-content: center;
 }
 
@@ -12,13 +20,24 @@ body{
     border: 1px solid black;
     width: 40px;
     height: 40px;
-    background-color: yellow;
-    
 }
 
-hr{
-    width: 100%;
-    border: 0;
-    margin: 0;
-    padding: 0;
+.bodyContainer{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+button{
+    border-radius: 5px;
+    background-color: aquamarine;
+    font-weight: bold;
+    border: 2px solid green;
+}
+
+button:active{
+    transform: translateY(4px);
+    border: 2px solid rgb(0, 118, 245);
 }
