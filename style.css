@@ -30,11 +30,19 @@ h1{
     gap: 20px;
 }
 
-button{
+.customizeGrid{
     border-radius: 5px;
     background-color: aquamarine;
     font-weight: bold;
     border: 2px solid green;
+}
+
+.resetGrid{
+    border-radius: 5px;
+    background-color: rgb(240, 108, 108);
+    font-weight: bold;
+    border: 2px solid rgb(0, 11, 0);
+    color: white;
 }
 
 button:active{

@@ -47,10 +47,32 @@ for (let i = 0; i<=15; ++i) {
 const allSquares = document.querySelectorAll('.horizontalSquare');
 
 
-
 //Get mouseover data and set color
 allSquares.forEach( (individualSquare) => {
     individualSquare.addEventListener('mouseover', (mouseoverData) => {
         squareColor(mouseoverData);
     } )
 } )
+
+//CUSTOMIZE GRID SIZE
+const customizeGrid = document.querySelector('.customizeGrid');
+let gridSizeFinalValue;
+
+function gridSizePrompt() {
+    do {
+        gridSize = prompt('Enter desired grid size (limit of 100)');
+        if (!gridSize) {
+            gridSize = 16
+        } else if (gridSize > 100) {
+            alert('Number too big, try again')
+        } else if (gridSize < 0) {
+            alert('Number too small, try again')
+        } else if (isNaN(gridSize)) {
+            alert('Not a number, try again')
+        }
+    } while (gridSize > 100 || gridSize < 0 || isNaN(gridSize));
+    console.log(gridSize);
+}
+
+
+customizeGrid.addEventListener('click', gridSizePrompt);
