@@ -1,6 +1,9 @@
 const sketchContainer = document.querySelector('.sketchContainer')
 
-
+const customizeGrid = document.querySelector('.customizeGrid'); //BUTTON; Select customize grid for event listener
+const resetGrid = document.querySelector('.resetGrid'); //BUTTON; reset board
+let gridSizeFinalValue = 15; //Must be created before for loop creating divs to provide default grid of 16x16
+let allSquares; //Allows squares to be reselected whenever new grid is made
 
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
@@ -33,30 +36,52 @@ function squareColor(mouseoverData){
 
 
 //Create the sketch squares
-for (let i = 0; i<=15; ++i) {
-    for (let j = 0; j<=15; ++j) {
-        const horizontalSquare = document.createElement('div');
-        horizontalSquare.classList.add('horizontalSquare');
-        horizontalSquare.setAttribute('data-brightness',100);   //Add brightness attribute 100 for progressive darkness reduction 
-        sketchContainer.appendChild(horizontalSquare);
+function createSketchSquares() {
+    for (let i = 0; i<=gridSizeFinalValue; ++i) {
+        for (let j = 0; j<=gridSizeFinalValue; ++j) {
+            const horizontalSquare = document.createElement('div');
+            horizontalSquare.classList.add('horizontalSquare');
+            horizontalSquare.setAttribute('data-brightness',100);   //Add brightness attribute 100 for progressive darkness reduction 
+            sketchContainer.appendChild(horizontalSquare);
+        }
+        
     }
-    
+    allSquares = document.querySelectorAll('.horizontalSquare');
+}
+createSketchSquares();
+
+
+function removeAllSquares() {
+
+    allSquares.forEach( (sketchBox) => {
+        sketchBox.remove();
+    })
+
 }
 
-//Selects all squares, MUST be after squares created
-const allSquares = document.querySelectorAll('.horizontalSquare');
+function resetAllSquares() {
 
+    allSquares.forEach( (sketchBox) => {
+        sketchBox.remove();
+    })
+    createSketchSquares();
+    colorsOnMouseover();
+
+}
 
 //Get mouseover data and set color
-allSquares.forEach( (individualSquare) => {
-    individualSquare.addEventListener('mouseover', (mouseoverData) => {
-        squareColor(mouseoverData);
+function colorsOnMouseover() {
+    allSquares.forEach( (individualSquare) => {
+        individualSquare.addEventListener('mouseover', (mouseoverData) => {
+            squareColor(mouseoverData);
+        } )
     } )
-} )
+}
+colorsOnMouseover();
 
 //CUSTOMIZE GRID SIZE
-const customizeGrid = document.querySelector('.customizeGrid');
-let gridSizeFinalValue;
+
+
 
 function gridSizePrompt() {
     do {
@@ -71,8 +96,11 @@ function gridSizePrompt() {
             alert('Not a number, try again')
         }
     } while (gridSize > 100 || gridSize < 0 || isNaN(gridSize));
-    console.log(gridSize);
+
+    gridSizeFinalValue = gridSize
+    gridSizeFinalValue -= 1
 }
 
 
 customizeGrid.addEventListener('click', gridSizePrompt);
+resetGrid.addEventListener('click', resetAllSquares);
