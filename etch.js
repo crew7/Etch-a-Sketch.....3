@@ -4,6 +4,7 @@ const customizeGrid = document.querySelector('.customizeGrid'); //BUTTON; Select
 const resetGrid = document.querySelector('.resetGrid'); //BUTTON; reset board
 let gridSizeFinalValue = 15; //Must be created before for loop creating divs to provide default grid of 16x16
 let allSquares; //Allows squares to be reselected whenever new grid is made
+let gridTemplateColumns = 16; //Has to be premade here to only add when button clicked, default to 16x16 grid
 
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
@@ -46,18 +47,14 @@ function createSketchSquares() {
         }
         
     }
-    allSquares = document.querySelectorAll('.horizontalSquare');
+    allSquares = document.querySelectorAll('.horizontalSquare'); //Refresh the allSquares value whenever changed
+    
+    
+    sketchContainer.style.setProperty('grid-template-columns', "repeat(" + gridTemplateColumns + ",auto)") 
+
 }
 createSketchSquares();
 
-
-function removeAllSquares() {
-
-    allSquares.forEach( (sketchBox) => {
-        sketchBox.remove();
-    })
-
-}
 
 function resetAllSquares() {
 
@@ -86,7 +83,7 @@ colorsOnMouseover();
 function gridSizePrompt() {
     do {
         gridSize = prompt('Enter desired grid size (limit of 100)');
-        if (!gridSize) {
+        if (!gridSize) { //If null value (user enter) default to 16x16 grid
             gridSize = 16
         } else if (gridSize > 100) {
             alert('Number too big, try again')
@@ -99,6 +96,8 @@ function gridSizePrompt() {
 
     gridSizeFinalValue = gridSize
     gridSizeFinalValue -= 1
+    gridTemplateColumns = gridSize //Since subtract 1 for grid creation loop, use original gridsize value for grid columns
+    resetAllSquares();
 }
 
 
