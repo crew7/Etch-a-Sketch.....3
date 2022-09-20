@@ -2,9 +2,16 @@ const sketchContainer = document.querySelector('.sketchContainer')
 
 const customizeGrid = document.querySelector('.customizeGrid'); //BUTTON; Select customize grid for event listener
 const resetGrid = document.querySelector('.resetGrid'); //BUTTON; reset board
-let gridSizeFinalValue = 15; //Must be created before for loop creating divs to provide default grid of 16x16
+let gridSizeFinalValue = 24; //Must be created before for loop creating divs to provide default grid of 25x25
 let allSquares; //Allows squares to be reselected whenever new grid is made
-let gridTemplateColumns = 16; //Has to be premade here to only add when button clicked, default to 16x16 grid
+let gridTemplateColumns = 25; //Has to be premade here to only add when button clicked, default to 25x25 grid
+
+createSketchSquares();
+colorsOnMouseover();
+
+customizeGrid.addEventListener('click', gridSizePrompt);
+resetGrid.addEventListener('click', resetAllSquares);
+
 
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
@@ -44,6 +51,7 @@ function createSketchSquares() {
             horizontalSquare.classList.add('horizontalSquare');
             horizontalSquare.setAttribute('data-brightness',100);   //Add brightness attribute 100 for progressive darkness reduction 
             sketchContainer.appendChild(horizontalSquare);
+            
         }
         
     }
@@ -51,9 +59,8 @@ function createSketchSquares() {
     
     
     sketchContainer.style.setProperty('grid-template-columns', "repeat(" + gridTemplateColumns + ",auto)") 
-
 }
-createSketchSquares();
+
 
 
 function resetAllSquares() {
@@ -63,7 +70,6 @@ function resetAllSquares() {
     })
     createSketchSquares();
     colorsOnMouseover();
-
 }
 
 //Get mouseover data and set color
@@ -71,10 +77,11 @@ function colorsOnMouseover() {
     allSquares.forEach( (individualSquare) => {
         individualSquare.addEventListener('mouseover', (mouseoverData) => {
             squareColor(mouseoverData);
+            
         } )
     } )
 }
-colorsOnMouseover();
+
 
 //CUSTOMIZE GRID SIZE
 
@@ -83,8 +90,8 @@ colorsOnMouseover();
 function gridSizePrompt() {
     do {
         gridSize = prompt('Enter desired grid size (limit of 100)');
-        if (!gridSize) { //If null value (user enter) default to 16x16 grid
-            gridSize = 16
+        if (!gridSize) { //If null value (user enter) default to 25x25 grid
+            gridSize = 25
         } else if (gridSize > 100) {
             alert('Number too big, try again')
         } else if (gridSize < 0) {
@@ -101,5 +108,3 @@ function gridSizePrompt() {
 }
 
 
-customizeGrid.addEventListener('click', gridSizePrompt);
-resetGrid.addEventListener('click', resetAllSquares);
