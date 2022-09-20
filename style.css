@@ -2,6 +2,7 @@ body{
     text-align: center;
     background-color: rgb(255, 255, 255);
     font-size: 23px;
+    background-color: rgb(176, 238, 255);
 }
 
 h1{
@@ -21,7 +22,7 @@ h1{
     border: 1px solid black;
     width: 25px;
     height: 25px;
-    
+    background-color: white;
 }
 
 
