@@ -1,4 +1,4 @@
-const sketchContainer = document.querySelector('.sketchContainer')
+const sketchContainer = document.querySelector('.sketchContainer');
 
 const customizeGrid = document.querySelector('.customizeGrid'); //BUTTON; Select customize grid for event listener
 const resetGrid = document.querySelector('.resetGrid'); //BUTTON; reset board
@@ -13,6 +13,7 @@ customizeGrid.addEventListener('click', gridSizePrompt);
 resetGrid.addEventListener('click', resetAllSquares);
 
 
+
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
     let color = '#';
@@ -21,7 +22,6 @@ function getRandomColor() {
     }
     return color;
 }
-  
 
 function squareColor(mouseoverData){
     let hoverStyle = mouseoverData.target.style;
@@ -42,7 +42,6 @@ function squareColor(mouseoverData){
 
 }
 
-
 //Create the sketch squares
 function createSketchSquares() {
     for (let i = 0; i<=gridSizeFinalValue; ++i) {
@@ -60,8 +59,6 @@ function createSketchSquares() {
     
     sketchContainer.style.setProperty('grid-template-columns', "repeat(" + gridTemplateColumns + ",auto)");  
 }
-
-
 
 function resetAllSquares() {
 
@@ -82,11 +79,7 @@ function colorsOnMouseover() {
     } )
 }
 
-
 //CUSTOMIZE GRID SIZE
-
-
-
 function gridSizePrompt() {
     do {
         gridSize = prompt('Enter desired grid size (limit of 100)');
@@ -101,9 +94,9 @@ function gridSizePrompt() {
         }
     } while (gridSize > 100 || gridSize < 0 || isNaN(gridSize));
 
-    gridSizeFinalValue = gridSize
-    gridSizeFinalValue -= 1
-    gridTemplateColumns = gridSize //Since subtract 1 for grid creation loop, use original gridsize value for grid columns
+    gridSizeFinalValue = gridSize;
+    gridSizeFinalValue -= 1;
+    gridTemplateColumns = gridSize; //Since subtract 1 for grid creation loop, use original gridsize value for grid columns
     resetAllSquares();
 }
 
