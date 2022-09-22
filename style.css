@@ -2,7 +2,7 @@ body{
     text-align: center;
     background-color: rgb(255, 255, 255);
     font-size: 23px;
-    background-color: rgb(176, 238, 255);
+    background-color: rgb(190, 228, 248);
 }
 
 h1{
@@ -13,15 +13,13 @@ h1{
 
 .sketchContainer{
     display: grid;
-    grid-template-columns: repeat(16, auto);
-    justify-content: center;
+    width: 675px;
+    height: 675px;
 }
 
 
 .horizontalSquare{
     border: 1px solid black;
-    width: 25px;
-    height: 25px;
     background-color: white;
 }
 

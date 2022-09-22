@@ -2,9 +2,9 @@ const sketchContainer = document.querySelector('.sketchContainer')
 
 const customizeGrid = document.querySelector('.customizeGrid'); //BUTTON; Select customize grid for event listener
 const resetGrid = document.querySelector('.resetGrid'); //BUTTON; reset board
-let gridSizeFinalValue = 24; //Must be created before for loop creating divs to provide default grid of 25x25
+let gridSizeFinalValue = 15; //Must be created before for loop creating divs to provide default grid of 16x16
 let allSquares; //Allows squares to be reselected whenever new grid is made
-let gridTemplateColumns = 25; //Has to be premade here to only add when button clicked, default to 25x25 grid
+let gridTemplateColumns = 16; //Has to be premade here to only add when button clicked, default to 16x16 grid
 
 createSketchSquares();
 colorsOnMouseover();
@@ -58,7 +58,7 @@ function createSketchSquares() {
     allSquares = document.querySelectorAll('.horizontalSquare'); //Refresh the allSquares value whenever changed
     
     
-    sketchContainer.style.setProperty('grid-template-columns', "repeat(" + gridTemplateColumns + ",auto)") 
+    sketchContainer.style.setProperty('grid-template-columns', "repeat(" + gridTemplateColumns + ",auto)");  
 }
 
 
@@ -90,14 +90,14 @@ function colorsOnMouseover() {
 function gridSizePrompt() {
     do {
         gridSize = prompt('Enter desired grid size (limit of 100)');
-        if (!gridSize) { //If null value (user enter) default to 25x25 grid
-            gridSize = 25
+        if (!gridSize) { //If null value (user enter or esc) default to 16x16 grid
+            gridSize = 16
         } else if (gridSize > 100) {
-            alert('Number too big, try again')
+            alert('Number too big, try again');
         } else if (gridSize < 0) {
-            alert('Number too small, try again')
+            alert('Number too small, try again');
         } else if (isNaN(gridSize)) {
-            alert('Not a number, try again')
+            alert('Not a number, try again');
         }
     } while (gridSize > 100 || gridSize < 0 || isNaN(gridSize));
 
